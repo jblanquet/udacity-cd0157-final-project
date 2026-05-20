@@ -17,14 +17,14 @@ Parameters:
   GitSourceRepo:
     Type: String
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
-    Default: cd0157-Server-Deployment-and-Containerization
+    Default: udacity-cd0157-final-project
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
 
   GitBranch:
     Type: String
-    Default: master
+    Default: main
     Description: GitHub git repository branch - change triggers a new build
     MinLength: 1
     MaxLength: 100
@@ -40,7 +40,7 @@ Parameters:
 
   GitHubUser:
     Type: String
-    Default: SudKul
+    Default: jblanquet
     Description: GitHub username or organization
     MinLength: 3
     MaxLength: 100
@@ -130,7 +130,7 @@ Resources:
               'LogicalResourceId': event['LogicalResourceId'],
               'Data': {"Message": "Resource creation successful!"},
             }
-          
+
             http = urllib3.PoolManager()
             client = boto3.client('iam')
             try:
@@ -152,7 +152,7 @@ Resources:
             except Exception as e:
               print(e)
               response['Status'] = 'FAILED'
-              response["Reason"] = e
+              response["Reason"] = str(e)
               response['Data'] = {"Message": "Resource creation failed"}
 
             response_body = json.dumps(response)

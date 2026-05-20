@@ -29,3 +29,15 @@ htmlcov/
 .direnv
 
 .github/**
+examples/
+
+# Local instruction notes
+**/_instruction*
+
+# VSCode devcontainer files
+.devcontainer/
+
+# Sensitive data
+_aws-auth-patch.yml
+aws-auth-patch.yml
+trust.json
